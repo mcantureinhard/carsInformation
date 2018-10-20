@@ -24,3 +24,6 @@ class CarCache:
         cars = list(filter(lambda x: x is not None,list(map(self.getCar, keys))))
         #[self.getCar() for key in keys]
         return cars
+    def getCarsAsDict(self, keys):
+        carsDict = { key: self.cars[key].toDict() for key in list(filter(lambda x : x in self.cars, keys)) }
+        return carsDict

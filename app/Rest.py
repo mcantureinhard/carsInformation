@@ -28,4 +28,15 @@ def cars():
     cars = cars_cache.getCars(ids)
     #Well, this is a horrible workaround... This way I can avoid making my car class serializable for now
     cars_json = dumps(list(map(loads, list(map(lambda o: o.toJSON(), cars)))))
+    print(cars_cache.getCarsAsDict(ids))
+    return Response(cars_json, mimetype='application/json', status=200)
+
+@rest_api.route("/cars_dict", methods=["POST"])
+def carsDict():
+    content = request.get_json()
+    if "ids" not in content:
+        abort(500)
+    ids = content["ids"]
+    cars = cars_cache.getCars(ids)
+    cars_json = dumps(cars_cache.getCarsAsDict(ids))
     return Response(cars_json, mimetype='application/json', status=200)

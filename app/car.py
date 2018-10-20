@@ -34,3 +34,5 @@ class Car:
         return self.model
     def getYear(self):
         return self.year
+    def toDict(self):
+        return self.__dict__
