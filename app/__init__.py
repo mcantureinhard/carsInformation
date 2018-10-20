@@ -10,5 +10,8 @@ cars_cache = CarCache()
 
 #We need to load our data, we should do it in batches, but for this test I'll just get everything
 data = redis_client.hgetall("cars_info")
-
 cars_cache.insertBatch(data)
+
+
+from app import Rest
+app.register_blueprint(Rest.rest_api, url_prefix='/rest')
