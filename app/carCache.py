@@ -1,4 +1,4 @@
-from car import Car
+from app.car import Car
 #Cars don't change much and the data needed is not much
 #Let's have it all live in memory
 #For simplicity I won't be updating this after the initial load
@@ -14,9 +14,8 @@ class CarCache:
             self.cars[key] = car
     #I will assume to receive a list of key-value objects
     def insertBatch(self, data_list):
-        for element in data_list:
-            key = next(iter(element))
-            self.insertCreate(key, element[key])
+        for key, value in data_list.items():
+            self.insertCreate(key, value)
     def getCar(self, key):
         if key in self.cars:
             return self.cars[key]
